@@ -9,7 +9,8 @@ import {
   Row
 } from 'components/elements'
 import capitalize from 'lodash/capitalize'
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { connect, Dispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { State } from 'reducers'
@@ -20,7 +21,15 @@ type TFP = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
   RouteComponentProps<any>
 
-class TicketForm extends Component<TFP> {
+const initialState = {
+  preview: false
+}
+
+type TFS = typeof initialState
+
+class TicketForm extends Component<TFP, TFS> {
+  state = initialState
+
   handleChange: Change = event => {
     const { name, value } = event.target
     this.props.updateTicketForm({ [name]: value })
@@ -35,6 +44,9 @@ class TicketForm extends Component<TFP> {
     event.preventDefault()
     this.props.createTicket(this.props.history)
   }
+
+  togglePreview = () =>
+    this.setState(prevState => ({ preview: !prevState.preview }))
 
   categoryRadio = ({ value }: { value: string }) => {
     const checked = this.props.category === value
@@ -65,7 +77,6 @@ class TicketForm extends Component<TFP> {
           value={this.props.title}
           handleChange={this.handleChange}
         />
-
         <Row opt="mb-3 align-items-center">
           <BCol size="auto">
             <h5>Category</h5>
@@ -78,7 +89,6 @@ class TicketForm extends Component<TFP> {
             <this.categoryRadio value="question" />
           </BCol>
         </Row>
-
         <DFlex center>
           <h5 className="mr-1">Priority</h5>
           {[1, 2, 3].map(n => {
@@ -98,8 +108,31 @@ class TicketForm extends Component<TFP> {
             )
           })}
         </DFlex>
+        <h5>Description</h5>
+        <div className="form-group">
+          <textarea
+            className="form-control"
+            name="content"
+            value={this.props.content}
+            onChange={this.handleChange}
+          />
+        </div>
 
-        <Btn primary>Create Ticket</Btn>
+        <Btn secondary onClick={this.togglePreview}>
+          Preview
+        </Btn>
+
+        <br />
+
+        {this.state.preview && (
+          <div className="p-3 ">
+            <ReactMarkdown source={this.props.content} />
+          </div>
+        )}
+
+        <Btn primary submit>
+          Create Ticket
+        </Btn>
       </form>
     )
   }

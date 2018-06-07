@@ -1,7 +1,8 @@
 const initialState = {
   title: '',
   category: '',
-  priority: 3
+  priority: 3,
+  content: ''
 }
 
 type TS = typeof initialState

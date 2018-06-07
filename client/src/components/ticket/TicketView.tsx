@@ -1,5 +1,6 @@
 import { fetchTicket } from 'actions/ticketActions'
 import React, { Component } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { connect, Dispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
@@ -24,6 +25,7 @@ class TicketView extends Component<TVP> {
 
   render() {
     const { title, posts } = this.props
+    const content = this.props.content ? this.props.content : ''
     return (
       <div>
         <h1>{title}</h1>
@@ -33,6 +35,7 @@ class TicketView extends Component<TVP> {
         <br />
         <strong>Status</strong> {status[this.props.status]}
         <br />
+        <ReactMarkdown source={content} />
         {posts.length < 1 ? <em>no posts</em> : ''}
       </div>
     )

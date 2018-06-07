@@ -26,6 +26,8 @@ interface Props {
   block?: boolean
   sm?: boolean
   lg?: boolean
+
+  submit?: boolean
 }
 
 type FF = (key: string[] | string) => string
@@ -66,6 +68,7 @@ export const Btn = (props: Props) => {
       onClick={props.onClick}
       className={result}
       disabled={props.disabled}
+      type={props.submit ? 'submit' : 'button'}
     >
       {props.children}
     </button>

@@ -6,7 +6,8 @@ const initialState = {
   category: '',
   status: 'open' as 'open',
   priority: 0,
-  posts: []
+  posts: [],
+  content: ''
 }
 
 export const view = (state = initialState, action: any): Ticket => {
