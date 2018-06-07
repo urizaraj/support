@@ -25,7 +25,7 @@ export function createTicket(history: History) {
           throw new Error()
         }
       })
-      .then(() => history.push('/tickets'))
+      .then(resp => history.push(`/tickets/${resp.id}`))
       .catch(err => console.log('error', err))
   }
 }
