@@ -35,7 +35,9 @@ class TicketView extends Component<TVP> {
         <br />
         <strong>Status</strong> {status[this.props.status]}
         <br />
-        <ReactMarkdown source={content} />
+        <hr />
+        {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
+        <hr />
         {posts.length < 1 ? <em>no posts</em> : ''}
       </div>
     )
