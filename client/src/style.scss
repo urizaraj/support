@@ -1,0 +1,45 @@
+// $font-family-base: 'IBM Plex Sans', sans-serif;
+$font-family-base: 'Roboto', sans-serif;
+// $font-family-base: 'Share Tech Mono', monospace;
+
+$enable-rounded: false;
+$enable-shadows: true;
+$link-hover-decoration: none;
+
+$theme-colors: (
+  primary: #1789fc,
+  secondary: #0a369d,
+  danger: #d7263d,
+  success: #2a9d8f,
+  warning: #ec4e20,
+  info: #17bebb,
+  light: #fffaff,
+  dark: #274060,
+);
+
+// $input-btn-focus-width: .05rem;
+$input-btn-focus-width: 0;
+// $input-btn-focus-color: #1789fc;
+
+$body-color: #274060;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  user-select: none;
+  text-rendering: optimizeLegibility;
+}
+
+.blue-hover {
+  transition: all .2s;
+  &:hover {
+    // background-color: theme-color-level(primary, -10)
+    background-color: theme-color(success);
+    color: white;
+  }
+}
+
+.vlabel {
+  cursor: pointer;
+  margin-bottom: 0;
+}
