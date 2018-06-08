@@ -1,7 +1,14 @@
+import { signup } from 'actions/accountActions'
 import { Btn, Control } from 'components/elements'
 import React, { Component } from 'react'
+import { connect, Dispatch } from 'react-redux'
+import { RouteComponentProps } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { Submit } from 'types'
 
-class Signup extends Component<any, any> {
+type SUP = RouteComponentProps<any> & ReturnType<typeof mapDispatch>
+
+class Signup extends Component<SUP, any> {
   constructor(props: any) {
     super(props)
 
@@ -19,60 +26,54 @@ class Signup extends Component<any, any> {
     })
   }
 
-  handleSubmit = () => {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      credentials: 'include'
-    }
-
-    fetch('/account/signup', options as RequestInit)
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          throw new Error()
-        }
-      })
-      .then(console.log)
-      .catch(error => {
-        console.log('there was an error', error)
-      })
+  handleSubmit: Submit = event => {
+    event.preventDefault()
+    this.props.signup(this.state, this.props.history)
   }
 
   render() {
     return (
       <div>
-        <h1>Sign Up</h1>
-        <h2>name</h2>
-        <Control
-          name="name"
-          value={this.state.name}
-          handleChange={this.handleChange}
-        />
+        <form onSubmit={this.handleSubmit}>
+          <h1>Sign Up</h1>
+          <h2>name</h2>
+          <Control
+            name="name"
+            value={this.state.name}
+            handleChange={this.handleChange}
+          />
 
-        <h2>emailAddress</h2>
-        <Control
-          name="emailAddress"
-          type="email"
-          value={this.state.emailAddress}
-          handleChange={this.handleChange}
-        />
+          <h2>emailAddress</h2>
+          <Control
+            name="emailAddress"
+            type="email"
+            value={this.state.emailAddress}
+            handleChange={this.handleChange}
+          />
 
-        <h2>password</h2>
-        <Control
-          type="password"
-          name="password"
-          value={this.state.password}
-          handleChange={this.handleChange}
-        />
+          <h2>password</h2>
+          <Control
+            type="password"
+            name="password"
+            value={this.state.password}
+            handleChange={this.handleChange}
+          />
 
-        <Btn dark onClick={this.handleSubmit}>
-          Sign Up
-        </Btn>
+          <Btn dark submit>
+            Sign Up
+          </Btn>
+        </form>
       </div>
     )
   }
 }
 
-export default Signup
+const mapDispatch = (dispatch: Dispatch) => {
+  const actions = { signup }
+  return bindActionCreators(actions, dispatch)
+}
+
+export default connect(
+  null,
+  mapDispatch
+)(Signup)
