@@ -10,11 +10,11 @@ import { Change, Submit } from 'types'
 
 type PFP = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
 
+type PFS = typeof initialState
+
 const initialState = {
   preview: false
 }
-
-type PFS = typeof initialState
 
 class PostForm extends Component<PFP, PFS> {
   state = initialState
@@ -29,8 +29,7 @@ class PostForm extends Component<PFP, PFS> {
     this.props.createPost()
   }
 
-  togglePreview = () =>
-    this.setState(prevState => ({ preview: !prevState.preview }))
+  togglePreview = () => this.setState(({ preview }) => ({ preview: !preview }))
 
   categoryRadio = ({ value }: { value: string }) => {
     const checked = this.props.category === value

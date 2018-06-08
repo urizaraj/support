@@ -21,11 +21,11 @@ type TFP = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
   RouteComponentProps<any>
 
+type TFS = typeof initialState
+
 const initialState = {
   preview: false
 }
-
-type TFS = typeof initialState
 
 class TicketForm extends Component<TFP, TFS> {
   state = initialState
@@ -45,8 +45,7 @@ class TicketForm extends Component<TFP, TFS> {
     this.props.createTicket(this.props.history)
   }
 
-  togglePreview = () =>
-    this.setState(prevState => ({ preview: !prevState.preview }))
+  togglePreview = () => this.setState(({ preview }) => ({ preview: !preview }))
 
   categoryRadio = ({ value }: { value: string }) => {
     const checked = this.props.category === value
@@ -72,11 +71,13 @@ class TicketForm extends Component<TFP, TFS> {
     return (
       <form onSubmit={this.handleSubmit}>
         <h5>Title</h5>
+
         <Control
           name="title"
           value={this.props.title}
           handleChange={this.handleChange}
         />
+
         <Row opt="mb-3 align-items-center">
           <BCol size="auto">
             <h5>Category</h5>
@@ -89,6 +90,7 @@ class TicketForm extends Component<TFP, TFS> {
             <this.categoryRadio value="question" />
           </BCol>
         </Row>
+
         <DFlex center>
           <h5 className="mr-1">Priority</h5>
           {[1, 2, 3].map(n => {
@@ -108,6 +110,7 @@ class TicketForm extends Component<TFP, TFS> {
             )
           })}
         </DFlex>
+
         <h5>Description</h5>
         <div className="form-group">
           <textarea
