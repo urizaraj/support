@@ -1,4 +1,5 @@
 import { fetchTicket } from 'actions/ticketActions'
+import { checkResp } from 'functions'
 import { State } from 'reducers'
 import { Dispatch } from 'redux'
 
@@ -14,9 +15,11 @@ export function createPost() {
     const state = getState()
 
     const ticketId = state.ticket.view.id
+    const userId = state.account.id
     const post = {
       ...state.post.form,
-      ticket: ticketId
+      ticket: ticketId,
+      user: userId
     }
 
     const options = {
@@ -25,13 +28,7 @@ export function createPost() {
     }
 
     return fetch('/post', options)
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          throw new Error()
-        }
-      })
+      .then(checkResp)
       .then(() => fetchTicket(ticketId))
       .catch(err => console.log('error creating ticket', err))
   }
