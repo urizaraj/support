@@ -1,3 +1,4 @@
+import { checkResp } from 'functions'
 import { History } from 'history'
 import { State } from 'reducers'
 import { Dispatch } from 'redux'
@@ -12,19 +13,17 @@ export function updateTicketForm(payload: any) {
 export function createTicket(history: History) {
   return (dispatch: Dispatch, getState: () => State) => {
     const state = getState()
+    const ticket = {
+      ...state.ticket.form,
+      user: state.account.id
+    }
     const options = {
       method: 'POST',
-      body: JSON.stringify(state.ticket.form)
+      body: JSON.stringify(ticket)
     }
 
     return fetch('/ticket', options)
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          throw new Error()
-        }
-      })
+      .then(checkResp)
       .then(resp => history.push(`/tickets/${resp.id}`))
       .catch(err => console.log('error', err))
   }
@@ -33,13 +32,7 @@ export function createTicket(history: History) {
 export function fetchTickets() {
   return (dispatch: Dispatch) => {
     return fetch('/ticket')
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          throw new Error()
-        }
-      })
+      .then(checkResp)
       .then(resp =>
         dispatch({
           type: 'FETCH_TICKETS',
@@ -53,13 +46,7 @@ export function fetchTickets() {
 export function fetchTicket(id: number) {
   return (dispatch: Dispatch) => {
     return fetch(`/ticket/${id}`)
-      .then(resp => {
-        if (resp.ok) {
-          return resp.json()
-        } else {
-          throw new Error()
-        }
-      })
+      .then(checkResp)
       .then(resp =>
         dispatch({
           type: 'FETCH_TICKET',
