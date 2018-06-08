@@ -46,6 +46,8 @@ class TicketView extends Component<TVP, TVS> {
         <strong>Priority</strong> {this.props.priority}
         <br />
         <strong>Status</strong> {status[this.props.status]}
+        <br />
+        <strong>Created by</strong> {this.props.user.name}
         <hr />
         {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
         <hr />

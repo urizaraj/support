@@ -1,4 +1,4 @@
-import { Ticket } from 'types'
+import { Ticket, User } from 'types'
 
 const initialState = {
   id: 0,
@@ -7,7 +7,8 @@ const initialState = {
   status: 'open' as 'open',
   priority: 0,
   posts: [],
-  content: ''
+  content: '',
+  user: {} as User
 }
 
 export const view = (state = initialState, action: any): Ticket => {

@@ -1,4 +1,5 @@
 import { Post } from 'types/Post'
+import { User } from 'types/User'
 
 export interface Ticket {
   title: string
@@ -8,4 +9,5 @@ export interface Ticket {
   posts: Post[]
   id: number
   content?: string
+  user: User
 }
