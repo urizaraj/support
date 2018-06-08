@@ -37,6 +37,11 @@ module.exports = {
       collection: 'post',
       via: 'ticket'
     },
+
+    user: {
+      model: 'user',
+      required: true
+    }
   }
 };
 

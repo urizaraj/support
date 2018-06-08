@@ -19,7 +19,13 @@ module.exports = {
     },
 
     ticket: {
-      model: 'ticket'
+      model: 'ticket',
+      required: true
+    },
+
+    user: {
+      model: 'user',
+      required: true
     }
   }
 }
