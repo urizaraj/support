@@ -11,3 +11,11 @@ export function url(base: string, params: Params) {
     .join(';')
   return `${base}?${p}`
 }
+
+export function checkResp(resp: Response) {
+  if (resp.ok) {
+    return resp.json()
+  } else {
+    throw new Error()
+  }
+}
