@@ -5,6 +5,7 @@ import { connect, Dispatch } from 'react-redux'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
 import { bindActionCreators } from 'redux'
+import { Ticket } from 'types'
 
 type TIP = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
@@ -16,20 +17,25 @@ class TicketIndex extends Component<TIP> {
   }
 
   render() {
-    return (
-      <div>
-        {this.props.tickets.map(t => (
-          <div key={t.id} className="mb-3">
-            <DFlex>
-              <h5 className="mr-2">{t.priority}</h5>
-              <h5>{t.title}</h5>
-            </DFlex>
-            <Link to={`/tickets/${t.id}`}>Link</Link>
-          </div>
-        ))}
-      </div>
-    )
+    const ticketList = this.props.tickets.map(TicketListItem)
+    return <div>{ticketList}</div>
   }
+}
+
+const TicketListItem = (ticket: Ticket) => {
+  const { id, title, priority } = ticket
+  const url = `/tickets/${id}`
+
+  return (
+    <div key={id} className="mb-3">
+      <Link to={url}>
+        <DFlex>
+          <h5 className="mr-2">{priority}</h5>
+          <h5>{title}</h5>
+        </DFlex>
+      </Link>
+    </div>
+  )
 }
 
 const mapState = (state: State) => {
