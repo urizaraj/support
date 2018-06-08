@@ -1,10 +1,10 @@
-import { loginAlso } from 'actions/accountActions'
+import { login } from 'actions/accountActions'
 import { Btn, Control } from 'components/elements'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { Change } from 'types'
+import { Change, Submit } from 'types'
 
 const initialState = {
   emailAddress: '',
@@ -26,9 +26,10 @@ class Login extends Component<LTP, typeof initialState> {
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit: Submit = event => {
+    event.preventDefault()
     const { emailAddress, password } = this.state
-    this.props.loginAlso(emailAddress, password, this.props.history)
+    this.props.login(emailAddress, password, this.props.history)
   }
 
   createControl(name: string, type = 'text') {
@@ -48,26 +49,28 @@ class Login extends Component<LTP, typeof initialState> {
   render() {
     return (
       <div>
-        <h1>Log In</h1>
+        <form onSubmit={this.handleSubmit}>
+          <h1>Log In</h1>
 
-        <h2>emailAddress</h2>
+          <h2>emailAddress</h2>
 
-        <this.Email />
+          <this.Email />
 
-        <h2>password</h2>
+          <h2>password</h2>
 
-        <this.Password />
+          <this.Password />
 
-        <Btn dark onClick={this.handleSubmit}>
-          Log In
-        </Btn>
+          <Btn dark submit>
+            Log In
+          </Btn>
+        </form>
       </div>
     )
   }
 }
 
 const mapDispatch = (dispatch: any) => {
-  return bindActionCreators({ loginAlso }, dispatch)
+  return bindActionCreators({ login }, dispatch)
 }
 
 export default connect(
