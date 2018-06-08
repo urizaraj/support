@@ -28,7 +28,7 @@ const render = () => {
   )
 }
 
-// store.dispatch(checkSession()).then(render)
-render()
+store.dispatch(checkSession()).then(render)
+// render()
 
 registerServiceWorker()
