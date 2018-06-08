@@ -1,11 +1,12 @@
-import { BCol, DFlex, Icon, Row } from 'components/elements'
+import { logout } from 'actions/accountActions'
+import { BCol, Btn, DFlex, Icon, Row } from 'components/elements'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect, Dispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { State } from 'reducers'
 import { bindActionCreators } from 'redux'
 
-type NB = ReturnType<typeof mapState>
+type NB = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
 
 const Navbar = (props: NB) => {
   return (
@@ -27,7 +28,14 @@ const Navbar = (props: NB) => {
       </BCol>
 
       {props.signedIn ? (
-        <BCol size="auto">{props.name}</BCol>
+        <React.Fragment>
+          <BCol size="auto">{props.name}</BCol>
+          <BCol>
+            <a href="#" onClick={props.logout}>
+              Log out
+            </a>
+          </BCol>
+        </React.Fragment>
       ) : (
         <React.Fragment>
           <BCol size="auto">
@@ -44,4 +52,12 @@ const Navbar = (props: NB) => {
 
 const mapState = (state: State) => ({ ...state.account })
 
-export default connect(mapState)(Navbar)
+const mapDispatch = (dispatch: Dispatch) => {
+  const actions = { logout }
+  return bindActionCreators(actions, dispatch)
+}
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Navbar)

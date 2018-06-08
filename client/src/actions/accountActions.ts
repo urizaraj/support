@@ -1,6 +1,5 @@
 import { checkResp } from 'functions'
 import { Dispatch } from 'react-redux'
-import { State } from 'reducers'
 
 export function login(emailAddress: string, password: string, history: any) {
   return (dispatch: any) => {
@@ -40,5 +39,19 @@ export function signup(state: any, history: any) {
       .then(resp => dispatch({ type: 'LOG_IN', user: resp }))
       .then(() => history.push('/'))
       .catch(error => console.log('there was an error', error))
+  }
+}
+
+export function logout(event: any) {
+  return (dispatch: Dispatch) => {
+    event.preventDefault()
+    const options: RequestInit = {
+      method: 'DELETE',
+      credentials: 'include'
+    }
+
+    return fetch('/account/logout', options)
+      .then(resp => console.log(resp))
+      .then(() => dispatch({ type: 'LOGOUT' }))
   }
 }

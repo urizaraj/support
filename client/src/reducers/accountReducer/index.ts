@@ -23,6 +23,9 @@ const accountReducer = (state = initialState, action: A): AR => {
         ...action.user
       }
 
+    case 'LOGOUT':
+      return initialState
+
     default:
       return state
   }

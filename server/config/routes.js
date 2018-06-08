@@ -19,7 +19,8 @@ module.exports.routes = {
    * not match any of those, it is matched against static assets.             *
    *                                                                          *
    ***************************************************************************/
-  'POST  /account/signup': { action: 'account/signup' },
-  'POST  /account/login' : { action: 'account/login' },
-  'GET  /account'        : { action: 'account/check-session' }
+  'POST  /account/signup' : { action: 'account/signup' },
+  'POST  /account/login'  : { action: 'account/login' },
+  'GET  /account'         : { action: 'account/check-session' },
+  'DELETE /account/logout': { action: 'account/logout' }
 }
