@@ -1,4 +1,5 @@
 import { Post } from 'types/Post'
+import { Team } from 'types/Team'
 import { User } from 'types/User'
 
 export interface Ticket {
@@ -10,4 +11,5 @@ export interface Ticket {
   id: number
   content?: string
   user: User
+  team: Team
 }

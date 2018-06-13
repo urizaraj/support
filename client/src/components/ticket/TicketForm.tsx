@@ -1,3 +1,4 @@
+import { fetchTeams } from 'actions/teamActions'
 import { createTicket, updateTicketForm } from 'actions/ticketActions'
 import {
   BCol,
@@ -26,6 +27,8 @@ type TFS = typeof initialState
 const initialState = {
   preview: false
 }
+
+type SEC = ((event: ChangeEvent<HTMLSelectElement>) => void)
 
 class TicketForm extends Component<TFP, TFS> {
   state = initialState
@@ -67,6 +70,15 @@ class TicketForm extends Component<TFP, TFS> {
     )
   }
 
+  handleSelect: SEC = event => {
+    const { name, value } = event.target
+    this.props.updateTicketForm({ [name]: value })
+  }
+
+  componentDidMount() {
+    this.props.fetchTeams()
+  }
+
   render() {
     const { preview } = this.state
     return (
@@ -101,7 +113,7 @@ class TicketForm extends Component<TFP, TFS> {
                 key={n}
                 name="priority"
                 value={n}
-                checked={this.props.priority === n}
+                checked={checked}
                 handleChange={this.handlePriority}
               >
                 <div className={checked ? 'bg-primary p-3 text-white' : 'p-3'}>
@@ -111,6 +123,24 @@ class TicketForm extends Component<TFP, TFS> {
             )
           })}
         </DFlex>
+
+        <h5>Team</h5>
+        <div className="form-group">
+          <select
+            name="team"
+            value={this.props.team}
+            onChange={this.handleSelect}
+            className="form-control"
+          >
+            {this.props.teams.map(t => {
+              return (
+                <option key={t.name} value={t.id}>
+                  {t.name}
+                </option>
+              )
+            })}
+          </select>
+        </div>
 
         <Row opt="align-items-center mb-2">
           <BCol size="auto">
@@ -148,12 +178,13 @@ class TicketForm extends Component<TFP, TFS> {
 
 const mapState = (state: State) => {
   return {
-    ...state.ticket.form
+    ...state.ticket.form,
+    teams: state.team.collection
   }
 }
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { updateTicketForm, createTicket }
+  const actions = { updateTicketForm, createTicket, fetchTeams }
   return bindActionCreators(actions, dispatch)
 }
 

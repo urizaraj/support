@@ -68,6 +68,7 @@ class TicketView extends Component<TVP, TVS> {
         <br />
         <strong>Status</strong> {status[this.props.status]}
         <br />
+        <strong>Team</strong> {this.props.team.name} <br />
         <strong>Created by</strong> {this.props.user.name}
         <br />
         <a href="#" onClick={this.handleDelete}>

@@ -22,6 +22,9 @@ const Navbar = (props: NB) => {
       <BCol size="auto">
         <Link to="/tickets/new">New Ticket</Link>
       </BCol>
+      <BCol size="auto">
+        <Link to="/teams/new">New Team</Link>
+      </BCol>
 
       <BCol size="auto">
         <Link to="/viewer">View Icons</Link>
