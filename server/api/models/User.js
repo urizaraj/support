@@ -32,5 +32,9 @@ module.exports = {
       maxLength: 120,
       example: 'Lebron4Ever'
     }
+  },
+
+  customToJSON: function() {
+    return _.omit(this, ['password'])
   }
 }

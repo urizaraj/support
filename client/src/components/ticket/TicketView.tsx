@@ -1,4 +1,4 @@
-import { fetchTicket } from 'actions/ticketActions'
+import { deleteTicket, fetchTicket } from 'actions/ticketActions'
 import { Btn } from 'components/elements'
 import PostForm from 'components/post/PostForm'
 import React, { Component } from 'react'
@@ -35,6 +35,12 @@ class TicketView extends Component<TVP, TVS> {
 
   toggleNewPost = () => this.setState({ showNewPost: !this.state.showNewPost })
 
+  handleDelete = (event: any) => {
+    event.preventDefault()
+    this.props.deleteTicket(this.id)
+    this.props.history.push('/tickets')
+  }
+
   render() {
     const { title, posts } = this.props
     const content = this.props.content ? this.props.content : ''
@@ -48,6 +54,10 @@ class TicketView extends Component<TVP, TVS> {
         <strong>Status</strong> {status[this.props.status]}
         <br />
         <strong>Created by</strong> {this.props.user.name}
+        <br />
+        <a href="#" onClick={this.handleDelete}>
+          Delete
+        </a>
         <hr />
         {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
         <hr />
@@ -86,7 +96,7 @@ const mapState = (state: State) => {
 }
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { fetchTicket }
+  const actions = { fetchTicket, deleteTicket }
   return bindActionCreators(actions, dispatch)
 }
 

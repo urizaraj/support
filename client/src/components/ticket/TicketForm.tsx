@@ -68,6 +68,7 @@ class TicketForm extends Component<TFP, TFS> {
   }
 
   render() {
+    const { preview } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <h5>Title</h5>
@@ -111,25 +112,29 @@ class TicketForm extends Component<TFP, TFS> {
           })}
         </DFlex>
 
-        <h5>Description</h5>
-        <div className="form-group">
-          <textarea
-            className="form-control"
-            name="content"
-            value={this.props.content}
-            onChange={this.handleChange}
-          />
-        </div>
+        <Row opt="align-items-center mb-2">
+          <BCol size="auto">
+            <h5 className="mb-0">Content</h5>
+          </BCol>
+          <BCol size="auto">
+            <Btn sm primary onClick={this.togglePreview}>
+              Preview
+            </Btn>
+          </BCol>
+        </Row>
 
-        <Btn secondary onClick={this.togglePreview}>
-          Preview
-        </Btn>
-
-        <br />
-
-        {this.state.preview && (
+        {preview ? (
           <div className="p-3 ">
             <ReactMarkdown source={this.props.content} />
+          </div>
+        ) : (
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              name="content"
+              value={this.props.content}
+              onChange={this.handleChange}
+            />
           </div>
         )}
 

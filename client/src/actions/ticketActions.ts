@@ -56,3 +56,15 @@ export function fetchTicket(id: number) {
       .catch(err => console.log('error', err))
   }
 }
+
+export function deleteTicket(id: number) {
+  return (dispatch: Dispatch) => {
+    const options = {
+      method: 'DELETE'
+    }
+
+    return fetch(`/ticket/${id}`, options)
+      .then(checkResp)
+      .then(resp => console.log(resp))
+  }
+}

@@ -1,4 +1,5 @@
 import { createPost, updatePostForm } from 'actions/postActions'
+import { fetchTicket } from 'actions/ticketActions'
 import { BCol, Btn, Icon, Radio, Row } from 'components/elements'
 import capitalize from 'lodash/capitalize'
 import React, { Component } from 'react'
@@ -104,14 +105,10 @@ class PostForm extends Component<PFP, PFS> {
   }
 }
 
-const mapState = (state: State) => {
-  return {
-    ...state.post.form
-  }
-}
+const mapState = (state: State) => ({ ...state.post.form })
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { updatePostForm, createPost }
+  const actions = { updatePostForm, createPost, fetchTicket }
   return bindActionCreators(actions, dispatch)
 }
 

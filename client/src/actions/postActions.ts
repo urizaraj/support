@@ -29,7 +29,8 @@ export function createPost() {
 
     return fetch('/post', options)
       .then(checkResp)
-      .then(() => fetchTicket(ticketId))
+      .then(() => dispatch({ type: 'RESET_POST_FORM' }))
+      .then(() => fetchTicket(ticketId)(dispatch))
       .catch(err => console.log('error creating ticket', err))
   }
 }
