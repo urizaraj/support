@@ -47,12 +47,7 @@ export function fetchTicket(id: number) {
   return (dispatch: Dispatch) => {
     return fetch(`/ticket/${id}`)
       .then(checkResp)
-      .then(resp =>
-        dispatch({
-          type: 'FETCH_TICKET',
-          ticket: resp
-        })
-      )
+      .then(ticket => dispatch({ type: 'FETCH_TICKET', ticket }))
       .catch(err => console.log('error', err))
   }
 }
@@ -66,5 +61,22 @@ export function deleteTicket(id: number) {
     return fetch(`/ticket/${id}`, options)
       .then(checkResp)
       .then(resp => console.log(resp))
+  }
+}
+
+export function patchTicketStatus(
+  status: 'open' | 'onHold' | 'closed',
+  id: number
+) {
+  return (dispatch: Dispatch) => {
+    const options = {
+      method: 'PATCH',
+      body: JSON.stringify({ status })
+    }
+
+    return fetch(`/ticket/${id}`, options)
+      .then(checkResp)
+      .then(resp => dispatch({ type: 'FETCH_TICKET', ticket: resp }))
+      .catch(err => console.log('error', err))
   }
 }

@@ -1,4 +1,8 @@
-import { deleteTicket, fetchTicket } from 'actions/ticketActions'
+import {
+  deleteTicket,
+  fetchTicket,
+  patchTicketStatus
+} from 'actions/ticketActions'
 import { Btn } from 'components/elements'
 import PostForm from 'components/post/PostForm'
 import React, { Component } from 'react'
@@ -7,7 +11,7 @@ import { connect, Dispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
 import { bindActionCreators } from 'redux'
-import { Post } from 'types'
+import { Click, Post } from 'types'
 
 enum status {
   open = 'Open',
@@ -16,7 +20,7 @@ enum status {
 }
 
 const initialState = {
-  showNewPost: false
+  newPost: false
 }
 
 type TVP = ReturnType<typeof mapState> &
@@ -33,17 +37,28 @@ class TicketView extends Component<TVP, TVS> {
     this.props.fetchTicket(this.id)
   }
 
-  toggleNewPost = () => this.setState({ showNewPost: !this.state.showNewPost })
+  toggleNewPost = () => this.setState(({ newPost }) => ({ newPost: !newPost }))
 
-  handleDelete = (event: any) => {
+  handleDelete: Click = event => {
     event.preventDefault()
     this.props.deleteTicket(this.id)
     this.props.history.push('/tickets')
   }
 
+  handleClose: Click = event => {
+    event.preventDefault()
+    this.props.patchTicketStatus('closed', this.id)
+  }
+
+  handleOpen: Click = event => {
+    event.preventDefault()
+    this.props.patchTicketStatus('open', this.id)
+  }
+
   render() {
     const { title, posts } = this.props
     const content = this.props.content ? this.props.content : ''
+    const open = this.props.status === 'open'
     return (
       <div>
         <h1>{title}</h1>
@@ -57,13 +72,22 @@ class TicketView extends Component<TVP, TVS> {
         <br />
         <a href="#" onClick={this.handleDelete}>
           Delete
-        </a>
+        </a>{' '}
+        {open ? (
+          <a href="#" onClick={this.handleClose}>
+            Close Ticket
+          </a>
+        ) : (
+          <a href="#" onClick={this.handleOpen}>
+            Re-open Ticket
+          </a>
+        )}
         <hr />
         {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
         <hr />
         {posts.length < 1 ? <em>no posts</em> : postList(this.props.posts)}
         <hr />
-        {this.state.showNewPost ? (
+        {this.state.newPost ? (
           <div>
             <h4>New Post</h4>
             <PostForm />
@@ -96,7 +120,7 @@ const mapState = (state: State) => {
 }
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { fetchTicket, deleteTicket }
+  const actions = { fetchTicket, deleteTicket, patchTicketStatus }
   return bindActionCreators(actions, dispatch)
 }
 
