@@ -41,6 +41,11 @@ module.exports = {
     user: {
       model: 'user',
       required: true
+    },
+
+    team: {
+      model: 'team',
+      required: true
     }
   }
 };

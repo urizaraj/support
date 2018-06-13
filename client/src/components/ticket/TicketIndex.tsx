@@ -1,5 +1,6 @@
 import { fetchTickets } from 'actions/ticketActions'
 import { DFlex } from 'components/elements'
+import sortBy from 'lodash/sortBy'
 import React, { Component } from 'react'
 import { connect, Dispatch } from 'react-redux'
 import { Link, RouteComponentProps } from 'react-router-dom'
@@ -17,7 +18,8 @@ class TicketIndex extends Component<TIP> {
   }
 
   render() {
-    const ticketList = this.props.tickets.map(TicketListItem)
+    const tickets = sortBy(this.props.tickets, t => t.priority)
+    const ticketList = tickets.map(TicketListItem)
     return <div>{ticketList}</div>
   }
 }

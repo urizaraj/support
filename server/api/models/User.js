@@ -31,6 +31,10 @@ module.exports = {
       description: "The user's name",
       maxLength: 120,
       example: 'Lebron4Ever'
+    },
+
+    team: {
+      model: 'team'
     }
   },
 
