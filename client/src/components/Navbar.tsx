@@ -32,7 +32,9 @@ const Navbar = (props: NB) => {
 
       {props.signedIn ? (
         <React.Fragment>
-          <BCol size="auto">{props.name}</BCol>
+          <BCol size="auto">
+            <strong className="text-primary">{props.name}</strong>
+          </BCol>
           <BCol>
             <a href="#" onClick={props.logout}>
               Log out

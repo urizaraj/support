@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container mt-5">
-          <h1>
+          <h1 className="mb-3">
             <Icon icon="task" /> Support
           </h1>
 
