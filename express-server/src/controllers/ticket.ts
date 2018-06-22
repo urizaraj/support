@@ -13,6 +13,7 @@ export const getTicket: Route = async (req, res) => {
   const ticket = await Ticket.findById(req.params.id)
     .populate('team')
     .populate('user')
+    .populate('posts.user')
   res.json(ticket.toJSON())
 }
 

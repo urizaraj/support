@@ -5,9 +5,10 @@ import Post from '../models/Post'
 type Route = (req: Request, res: Response) => void
 
 export const createPost: Route = async (req, res) => {
-  const { ticket, ...rest } = req.body
-  const t = await Ticket.findById(ticket)
+  const { ticketId, ...rest } = req.body
+  const ticket = await Ticket.findById(ticketId)
 
-  t.posts.push(rest)
-  t.save()
+  ticket.posts.push(rest)
+  ticket.save()
+  res.json(ticket.toJSON())
 }

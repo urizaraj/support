@@ -18,7 +18,7 @@ export function createPost() {
     const userId = state.account.id
     const post = {
       ...state.post.form,
-      ticket: ticketId,
+      ticketId,
       user: userId
     }
 
@@ -34,6 +34,6 @@ export function createPost() {
       .then(checkResp)
       .then(() => dispatch({ type: 'RESET_POST_FORM' }))
       .then(() => fetchTicket(ticketId)(dispatch))
-      .catch(err => console.log('error creating ticket', err))
+      .catch(err => console.log('error creating post', err))
   }
 }

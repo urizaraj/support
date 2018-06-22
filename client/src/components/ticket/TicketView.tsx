@@ -105,10 +105,10 @@ class TicketView extends Component<TVP, TVS> {
 
 const postList = (posts: Post[]) =>
   posts.map(post => {
-    const { content, category, id } = post
+    const { content, category, id, user } = post
     return (
       <div key={id}>
-        <strong>{category}</strong>
+        <strong>{user.name}</strong>
         <ReactMarkdown source={content} />
       </div>
     )
