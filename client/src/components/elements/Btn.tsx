@@ -9,6 +9,8 @@ interface Props {
   children?: ReactNode
   onClick?: Click
 
+  value?: string
+
   disabled?: boolean
 
   primary?: boolean
@@ -69,6 +71,7 @@ export const Btn = (props: Props) => {
       className={result}
       disabled={props.disabled}
       type={props.submit ? 'submit' : 'button'}
+      value={props.value}
     >
       {props.children}
     </button>

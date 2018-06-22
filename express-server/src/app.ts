@@ -134,6 +134,7 @@ app.post('/ticket', ticketController.postTicket)
 
 app.get('/team', teamController.getTeams)
 app.post('/team', teamController.createTeam)
+app.delete('/team/:id', teamController.deleteTeam)
 
 app.post('/post', postController.createPost)
 
