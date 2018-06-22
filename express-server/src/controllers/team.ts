@@ -18,3 +18,8 @@ export const getTeams: Route = async (req, res) => {
 
   res.json(teams.map(team => team.toJSON()))
 }
+
+export const deleteTeam: Route = async (req, res) => {
+  await Team.findByIdAndRemove(req.params.id)
+  res.sendStatus(204)
+}
