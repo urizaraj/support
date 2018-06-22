@@ -1,7 +1,7 @@
 import { fetchTickets } from 'actions/ticketActions'
 import { BCol, DFlex, Row } from 'components/elements'
 import sortBy from 'lodash/sortBy'
-import uniq from 'lodash/uniq'
+import uniqBy from 'lodash/uniqBy'
 import React, { Component } from 'react'
 import { connect, Dispatch } from 'react-redux'
 import { Link, RouteComponentProps } from 'react-router-dom'
@@ -34,7 +34,7 @@ class TicketIndex extends Component<TIP, TIS> {
   render() {
     let tickets = sortBy(this.props.tickets, t => t.priority)
 
-    const teams = uniq(tickets.map(t => [t.team.id, t.team.name]))
+    const teams = uniqBy(tickets.map(t => ({ ...t.team })), 'id')
 
     if (this.state.team) {
       tickets = tickets.filter(t => t.team.id === this.state.team)
@@ -51,10 +51,10 @@ class TicketIndex extends Component<TIP, TIS> {
             onChange={this.handleTeam}
             className="form-control"
           >
-            <option value="0">All</option>
+            <option value="">All</option>
             {teams.map(t => (
-              <option key={t[0]} value={t[0]}>
-                {t[1]}
+              <option key={t.id} value={t.id}>
+                {t.name}
               </option>
             ))}
           </select>
