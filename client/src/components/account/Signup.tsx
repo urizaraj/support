@@ -14,7 +14,7 @@ class Signup extends Component<SUP, any> {
 
     this.state = {
       name: '',
-      emailAddress: '',
+      email: '',
       password: ''
     }
   }
@@ -36,22 +36,22 @@ class Signup extends Component<SUP, any> {
       <div>
         <form onSubmit={this.handleSubmit}>
           <h1>Sign Up</h1>
-          <h2>name</h2>
+          <h2>Name</h2>
           <Control
             name="name"
             value={this.state.name}
             handleChange={this.handleChange}
           />
 
-          <h2>emailAddress</h2>
+          <h2>Email</h2>
           <Control
-            name="emailAddress"
+            name="email"
             type="email"
-            value={this.state.emailAddress}
+            value={this.state.email}
             handleChange={this.handleChange}
           />
 
-          <h2>password</h2>
+          <h2>Password</h2>
           <Control
             type="password"
             name="password"

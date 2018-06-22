@@ -1,5 +1,5 @@
 import { Btn, Control } from 'components/elements'
-import { checkResp } from 'functions'
+import { checkResp, post } from 'functions'
 import React, { Component } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Change, Submit } from 'types'
@@ -21,15 +21,20 @@ class TeamForm extends Component<TFP, TFS> {
 
   handleSubmit: Submit = event => {
     event.preventDefault()
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(this.state)
-    }
 
-    fetch('/team', options)
+    post('/team', this.state)
       .then(checkResp)
       .then(() => this.props.history.push('/'))
       .catch(() => console.log('team not created'))
+    // const options = {
+    //   method: 'POST',
+    //   body: JSON.stringify(this.state)
+    // }
+
+    // fetch('/team', options)
+    //   .then(checkResp)
+    //   .then(() => this.props.history.push('/'))
+    //   .catch(() => console.log('team not created'))
   }
 
   render() {

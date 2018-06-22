@@ -19,13 +19,16 @@ export function createTicket(history: History) {
     }
     const options = {
       method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
       body: JSON.stringify(ticket)
     }
 
     return fetch('/ticket', options)
       .then(checkResp)
       .then(resp => history.push(`/tickets/${resp.id}`))
-      .catch(err => console.log('error', err))
+      .catch(err => console.log('error creating ticket', err))
   }
 }
 
@@ -39,7 +42,7 @@ export function fetchTickets() {
           tickets: resp
         })
       )
-      .catch(err => console.log('error', err))
+      .catch(err => console.log('error fetching tickets', err))
   }
 }
 
@@ -48,7 +51,7 @@ export function fetchTicket(id: number) {
     return fetch(`/ticket/${id}`)
       .then(checkResp)
       .then(ticket => dispatch({ type: 'FETCH_TICKET', ticket }))
-      .catch(err => console.log('error', err))
+      .catch(err => console.log('error fetching ticket', err))
   }
 }
 
@@ -71,12 +74,15 @@ export function patchTicketStatus(
   return (dispatch: Dispatch) => {
     const options = {
       method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
       body: JSON.stringify({ status })
     }
 
     return fetch(`/ticket/${id}`, options)
       .then(checkResp)
       .then(resp => dispatch({ type: 'FETCH_TICKET', ticket: resp }))
-      .catch(err => console.log('error', err))
+      .catch(err => console.log('error updating ticket', err))
   }
 }

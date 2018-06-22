@@ -1,15 +1,18 @@
 import { checkResp } from 'functions'
 import { Dispatch } from 'react-redux'
 
-export function login(emailAddress: string, password: string, history: any) {
+export function login(state: any, history: any) {
   return (dispatch: any) => {
     const options: RequestInit = {
       method: 'POST',
-      body: JSON.stringify({ emailAddress, password }),
+      body: JSON.stringify(state),
+      headers: {
+        'content-type': 'application/json'
+      },
       credentials: 'include'
     }
 
-    fetch('/account/login', options)
+    fetch('/login', options)
       .then(checkResp)
       .then(resp => dispatch({ type: 'LOG_IN', user: resp }))
       .then(() => history.push('/'))
@@ -31,10 +34,13 @@ export function signup(state: any, history: any) {
     const options: RequestInit = {
       method: 'POST',
       body: JSON.stringify(state),
+      headers: {
+        'content-type': 'application/json'
+      },
       credentials: 'include'
     }
 
-    fetch('/account/signup', options)
+    fetch('/signup', options)
       .then(checkResp)
       .then(resp => dispatch({ type: 'LOG_IN', user: resp }))
       .then(() => history.push('/'))
@@ -46,11 +52,11 @@ export function logout(event: any) {
   return (dispatch: Dispatch) => {
     event.preventDefault()
     const options: RequestInit = {
-      method: 'DELETE',
+      // method: 'DELETE',
       credentials: 'include'
     }
 
-    return fetch('/account/logout', options)
+    return fetch('/logout', options)
       .then(resp => console.log(resp))
       .then(() => dispatch({ type: 'LOGOUT' }))
   }

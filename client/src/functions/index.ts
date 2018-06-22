@@ -19,3 +19,15 @@ export function checkResp(resp: Response) {
     throw new Error()
   }
 }
+
+export function post(postURL: string, body: any) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }
+
+  return fetch(postURL, options)
+}

@@ -8,6 +8,7 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
 import { bindActionCreators } from 'redux'
 import { Ticket } from 'types'
+import { Team } from 'types/Team'
 
 const initialState = {
   team: 0
@@ -38,7 +39,9 @@ class TicketIndex extends Component<TIP, TIS> {
     if (this.state.team) {
       tickets = tickets.filter(t => t.team.id === this.state.team)
     }
+
     const ticketList = tickets.map(TicketListItem)
+
     return (
       <div>
         <h2>Tickets</h2>
@@ -83,9 +86,7 @@ const TicketListItem = (ticket: Ticket) => {
           <h5>{team.name}</h5>
         </BCol>
 
-        <BCol size="3">
-          <h6>{user.name}</h6>
-        </BCol>
+        <BCol size="3">{/* <h6>{user.name}</h6> */}</BCol>
       </Row>
     </div>
   )

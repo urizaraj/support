@@ -24,6 +24,9 @@ export function createPost() {
 
     const options = {
       method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
       body: JSON.stringify(post)
     }
 

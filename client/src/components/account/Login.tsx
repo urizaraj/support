@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import { Change, Submit } from 'types'
 
 const initialState = {
-  emailAddress: '',
+  email: '',
   password: ''
 }
 
@@ -28,8 +28,7 @@ class Login extends Component<LTP, typeof initialState> {
 
   handleSubmit: Submit = event => {
     event.preventDefault()
-    const { emailAddress, password } = this.state
-    this.props.login(emailAddress, password, this.props.history)
+    this.props.login(this.state, this.props.history)
   }
 
   createControl(name: string, type = 'text') {
@@ -43,7 +42,7 @@ class Login extends Component<LTP, typeof initialState> {
     )
   }
 
-  Email = () => this.createControl('emailAddress', 'email')
+  Email = () => this.createControl('email', 'email')
   Password = () => this.createControl('password', 'password')
 
   render() {
@@ -52,11 +51,11 @@ class Login extends Component<LTP, typeof initialState> {
         <form onSubmit={this.handleSubmit}>
           <h1>Log In</h1>
 
-          <h2>emailAddress</h2>
+          <h6>Email</h6>
 
           <this.Email />
 
-          <h2>password</h2>
+          <h6>Password</h6>
 
           <this.Password />
 
