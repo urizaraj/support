@@ -131,6 +131,7 @@ app.get('/ticket', ticketController.getTickets)
 app.get('/ticket/:id', ticketController.getTicket)
 app.delete('/ticket/:id', ticketController.deleteTicket)
 app.post('/ticket', ticketController.postTicket)
+app.patch('/ticket/:id', ticketController.patchTicket)
 
 app.get('/team', teamController.getTeams)
 app.post('/team', teamController.createTeam)

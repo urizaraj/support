@@ -31,3 +31,8 @@ export const deleteTicket: Route = async (req, res) => {
   await Ticket.findByIdAndRemove(req.params.id)
   res.sendStatus(204)
 }
+
+export const patchTicket: Route = async (req, res) => {
+  const ticket = await Ticket.findByIdAndUpdate(req.params.id, req.body)
+  res.json(ticket.toJSON())
+}
