@@ -134,7 +134,7 @@ class TicketForm extends Component<TFP, TFS> {
           >
             {this.props.teams.map(t => {
               return (
-                <option key={t.name} value={t.id}>
+                <option key={t.id} value={t.id}>
                   {t.name}
                 </option>
               )
