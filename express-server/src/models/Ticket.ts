@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { TeamModel } from './Team'
 import { postSchema, PostModel } from './Post'
+import { UserModel } from './User'
 
 export type TicketModel = mongoose.Document & {
   title: string
@@ -10,6 +11,7 @@ export type TicketModel = mongoose.Document & {
   content: string
   team: TeamModel
   posts: PostModel[]
+  user: UserModel
 }
 
 const ObjectId = mongoose.SchemaTypes.ObjectId
@@ -22,6 +24,7 @@ const ticketSchema = new mongoose.Schema(
     priority: Number,
     content: String,
     team: { type: ObjectId, ref: 'Team' },
+    user: { type: ObjectId, ref: 'User' },
     posts: [postSchema]
   },
   {

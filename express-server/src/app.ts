@@ -129,6 +129,7 @@ app.get(
 
 app.get('/ticket', ticketController.getTickets)
 app.get('/ticket/:id', ticketController.getTicket)
+app.delete('/ticket/:id', ticketController.deleteTicket)
 app.post('/ticket', ticketController.postTicket)
 
 app.get('/team', teamController.getTeams)

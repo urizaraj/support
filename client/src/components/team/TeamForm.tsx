@@ -26,15 +26,6 @@ class TeamForm extends Component<TFP, TFS> {
       .then(checkResp)
       .then(() => this.props.history.push('/'))
       .catch(() => console.log('team not created'))
-    // const options = {
-    //   method: 'POST',
-    //   body: JSON.stringify(this.state)
-    // }
-
-    // fetch('/team', options)
-    //   .then(checkResp)
-    //   .then(() => this.props.history.push('/'))
-    //   .catch(() => console.log('team not created'))
   }
 
   render() {

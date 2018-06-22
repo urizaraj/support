@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express'
-import Ticket, { TicketModel } from '../models/Ticket'
+import { RequestHandler } from 'express'
+import Ticket from '../models/Ticket'
 
 type Route = RequestHandler
 
@@ -22,4 +22,9 @@ export const postTicket: Route = (req, res) => {
   ticket.save()
 
   res.json(ticket.toJSON())
+}
+
+export const deleteTicket: Route = async (req, res) => {
+  await Ticket.findByIdAndRemove(req.params.id)
+  res.sendStatus(204)
 }

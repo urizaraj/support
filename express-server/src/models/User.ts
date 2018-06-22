@@ -53,7 +53,10 @@ const userSchema = new mongoose.Schema(
       picture: String
     }
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: { getters: true }
+  }
 )
 
 /**
