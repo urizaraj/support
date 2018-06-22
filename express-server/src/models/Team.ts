@@ -9,6 +9,7 @@ export const teamSchema = new mongoose.Schema(
     name: String
   },
   {
+    timestamps: true,
     toJSON: { getters: true }
   }
 )

@@ -28,6 +28,7 @@ const ticketSchema = new mongoose.Schema(
     posts: [postSchema]
   },
   {
+    timestamps: true,
     toJSON: { getters: true },
     usePushEach: true
   }
