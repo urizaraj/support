@@ -62,6 +62,8 @@ class TicketView extends Component<TVP, TVS> {
     return (
       <div>
         <h1>{title}</h1>
+        <strong>Created by</strong> {this.props.user.name}
+        <br />
         <strong>Ticket</strong> {this.id}
         <br />
         <strong>Priority</strong> {this.props.priority}
@@ -69,17 +71,15 @@ class TicketView extends Component<TVP, TVS> {
         <strong>Status</strong> {status[this.props.status]}
         <br />
         <strong>Team</strong> {this.props.team.name} <br />
-        <strong>Created by</strong> {this.props.user.name}
-        <br />
-        <a href="#" onClick={this.handleDelete}>
+        <a href="/" onClick={this.handleDelete}>
           Delete
         </a>{' '}
         {open ? (
-          <a href="#" onClick={this.handleClose}>
+          <a href="/" onClick={this.handleClose}>
             Close Ticket
           </a>
         ) : (
-          <a href="#" onClick={this.handleOpen}>
+          <a href="/" onClick={this.handleOpen}>
             Re-open Ticket
           </a>
         )}
