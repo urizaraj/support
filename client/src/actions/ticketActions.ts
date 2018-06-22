@@ -1,4 +1,4 @@
-import { checkResp } from 'functions'
+import { checkResp, post } from 'functions'
 import { History } from 'history'
 import { State } from 'reducers'
 import { Dispatch } from 'redux'
@@ -17,15 +17,8 @@ export function createTicket(history: History) {
       ...state.ticket.form,
       user: state.account.id
     }
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(ticket)
-    }
 
-    return fetch('/ticket', options)
+    return post('/ticket', ticket)
       .then(checkResp)
       .then(resp => history.push(`/tickets/${resp.id}`))
       .catch(err => console.log('error creating ticket', err))
