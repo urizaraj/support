@@ -3,7 +3,7 @@ const initialState = {
 }
 
 interface US {
-  id?: number
+  id?: string
   name?: string
   email?: string
 }

@@ -11,7 +11,7 @@ import { Ticket } from 'types'
 import { Team } from 'types/Team'
 
 const initialState = {
-  team: 0
+  team: ''
 }
 
 type TIP = ReturnType<typeof mapState> &
@@ -28,7 +28,7 @@ class TicketIndex extends Component<TIP, TIS> {
   }
 
   handleTeam = (event: any) => {
-    this.setState({ team: parseInt(event.target.value, 10) })
+    this.setState({ team: event.target.value })
   }
 
   render() {

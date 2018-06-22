@@ -30,8 +30,7 @@ type TVP = ReturnType<typeof mapState> &
 type TVS = typeof initialState
 
 class TicketView extends Component<TVP, TVS> {
-  // id = parseInt(this.props.match.params.id, 10)
-  id = this.props.match.params.id as number
+  id = this.props.match.params.id
   state = initialState
 
   componentDidMount() {

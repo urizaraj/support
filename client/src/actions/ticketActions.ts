@@ -46,7 +46,7 @@ export function fetchTickets() {
   }
 }
 
-export function fetchTicket(id: number) {
+export function fetchTicket(id: string) {
   return (dispatch: Dispatch) => {
     return fetch(`/ticket/${id}`)
       .then(checkResp)
@@ -55,7 +55,7 @@ export function fetchTicket(id: number) {
   }
 }
 
-export function deleteTicket(id: number) {
+export function deleteTicket(id: string) {
   return (dispatch: Dispatch) => {
     const options = {
       method: 'DELETE'

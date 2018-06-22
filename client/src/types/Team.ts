@@ -5,5 +5,5 @@ export interface Team {
   name: string
   members: User[]
   tickets: Ticket[]
-  id: number
+  id: string
 }

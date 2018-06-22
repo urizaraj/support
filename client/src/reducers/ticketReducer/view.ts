@@ -2,7 +2,7 @@ import { Ticket, User } from 'types'
 import { Team } from 'types/Team'
 
 const initialState = {
-  id: 0,
+  id: '',
   title: '',
   category: '',
   status: 'open' as 'open',
