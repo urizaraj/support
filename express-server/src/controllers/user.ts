@@ -6,7 +6,7 @@ import { default as User, UserModel, AuthToken } from '../models/User'
 import { Request, Response, NextFunction } from 'express'
 import { IVerifyOptions } from 'passport-local'
 import { WriteError } from 'mongodb'
-const request = require('express-validator')
+// const request = require('express-validator')
 
 type Route = (req: Request, res: Response, next?: NextFunction) => void
 
@@ -40,8 +40,6 @@ export let postLogin: Route = (req, res, next) => {
         if (err) {
           return next(err)
         }
-        // req.flash('success', { msg: 'Success! You are logged in.' })
-        // res.redirect(req.session.returnTo || '/')
         res.json(user.toJSON())
       })
     }
@@ -107,29 +105,6 @@ export let postSignup: Route = async (req, res, next) => {
     if (err) return next(err)
     res.json(user.toJSON())
   })
-
-  // User.findOne({ email: req.body.email }, (err, existingUser) => {
-  //   if (err) {
-  //     return next(err)
-  //   }
-  //   if (existingUser) {
-  //     req.flash('errors', {
-  //       msg: 'Account with that email address already exists.'
-  //     })
-  //     return res.redirect('/signup')
-  //   }
-  //   user.save(err => {
-  //     if (err) {
-  //       return next(err)
-  //     }
-  //     req.logIn(user, err => {
-  //       if (err) {
-  //         return next(err)
-  //       }
-  //       res.redirect('/')
-  //     })
-  //   })
-  // })
 }
 
 /**

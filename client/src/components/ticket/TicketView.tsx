@@ -86,12 +86,12 @@ class TicketView extends Component<TVP, TVS> {
         <hr />
         {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
         <hr />
-        {posts.length < 1 ? <em>no posts</em> : postList(this.props.posts)}
+        {posts.length < 1 ? <em>no posts</em> : postList(posts)}
         <hr />
         {this.state.newPost ? (
           <div>
             <h4>New Post</h4>
-            <PostForm />
+            <PostForm toggleNewPost={this.toggleNewPost} />
           </div>
         ) : (
           <Btn primary onClick={this.toggleNewPost}>
