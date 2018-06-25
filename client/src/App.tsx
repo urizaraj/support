@@ -1,4 +1,5 @@
 import Login from 'components/account/Login'
+import Profile from 'components/account/Profile'
 import Signup from 'components/account/Signup'
 import Navbar from 'components/Navbar'
 import TeamForm from 'components/team/TeamForm'
@@ -29,6 +30,7 @@ class App extends Component {
               <Route path="/tickets" component={TicketIndex} />
               <Route path="/account/signup" component={Signup} />
               <Route path="/account/login" component={Login} />
+              <Route path="/account/profile" component={Profile} />
               <Route path="/viewer" component={Viewer} />
               <Route path="/teams/new" component={TeamForm} />
             </Switch>

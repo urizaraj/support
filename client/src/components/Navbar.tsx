@@ -22,8 +22,9 @@ const Navbar = (props: NB) => {
       <BCol size="auto">
         <Link to="/tickets/new">New Ticket</Link>
       </BCol>
+
       <BCol size="auto">
-        <Link to="/teams/new">New Team</Link>
+        <Link to="/teams/new">Teams</Link>
       </BCol>
 
       <BCol size="auto">
@@ -33,10 +34,13 @@ const Navbar = (props: NB) => {
       {props.signedIn ? (
         <React.Fragment>
           <BCol size="auto">
-            <strong className="text-primary">{props.name}</strong>
+            <Link to="/account/profile">
+              <strong className="text-primary">{props.name}</strong>
+            </Link>
           </BCol>
+
           <BCol>
-            <a href="#" onClick={props.logout}>
+            <a href="/" onClick={props.logout}>
               Log out
             </a>
           </BCol>
@@ -46,6 +50,7 @@ const Navbar = (props: NB) => {
           <BCol size="auto">
             <Link to="/account/signup">Sign Up</Link>
           </BCol>
+
           <BCol size="auto">
             <Link to="/account/login">Log In</Link>
           </BCol>
