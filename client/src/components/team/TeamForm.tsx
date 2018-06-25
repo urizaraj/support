@@ -69,9 +69,10 @@ class TeamForm extends Component<TFP, TFS> {
     return (
       <div>
         <h4>Current Teams</h4>
-        {teams}
+        <div className="mb-4">{teams}</div>
         <form onSubmit={this.handleSubmit}>
-          <h4>Team Name</h4>
+          <h4>New Team</h4>
+          <h6>Name</h6>
           <Control
             name="name"
             value={this.state.form.name}

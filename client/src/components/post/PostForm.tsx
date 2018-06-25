@@ -9,7 +9,10 @@ import { State } from 'reducers'
 import { bindActionCreators } from 'redux'
 import { Change, Submit } from 'types'
 
-type PFP = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
+type PFP = ReturnType<typeof mapState> &
+  ReturnType<typeof mapDispatch> & {
+    toggleNewPost: () => void
+  }
 
 type PFS = typeof initialState
 
@@ -28,6 +31,7 @@ class PostForm extends Component<PFP, PFS> {
   handleSubmit: Submit = event => {
     event.preventDefault()
     this.props.createPost()
+    this.props.toggleNewPost()
   }
 
   togglePreview = () => this.setState(({ preview }) => ({ preview: !preview }))
