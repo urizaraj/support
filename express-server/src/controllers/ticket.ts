@@ -33,6 +33,12 @@ export const deleteTicket: Route = async (req, res) => {
 }
 
 export const patchTicket: Route = async (req, res) => {
-  const ticket = await Ticket.findByIdAndUpdate(req.params.id, req.body)
+  const ticket = await Ticket.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  })
+    .populate('team')
+    .populate('user')
+    .populate('posts.user')
+
   res.json(ticket.toJSON())
 }
