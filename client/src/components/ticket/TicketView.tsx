@@ -7,10 +7,10 @@ import { Btn } from 'components/elements'
 import PostForm from 'components/post/PostForm'
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { Click, Post } from 'types'
 
 enum status {

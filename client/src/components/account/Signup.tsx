@@ -1,9 +1,9 @@
 import { signup } from 'actions/accountActions'
 import { Btn, Control } from 'components/elements'
 import React, { Component } from 'react'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { Submit } from 'types'
 
 type SUP = RouteComponentProps<any> & ReturnType<typeof mapDispatch>

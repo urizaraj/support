@@ -4,25 +4,25 @@
   "private": true,
   "proxy": "http://localhost:1337/",
   "dependencies": {
-    "@types/lodash": "^4.14.109",
-    "@types/react-redux": "^6.0.0",
-    "@types/react-router-dom": "^4.2.6",
-    "@types/redux": "^3.6.0",
-    "autoprefixer": "^8.5.0",
+    "@types/lodash": "^4.14.110",
+    "@types/react-redux": "^6.0.3",
+    "@types/react-router-dom": "^4.2.7",
+    "@types/redux": "^3.6.31",
+    "autoprefixer": "^8.6.4",
     "bootstrap": "^4.1.1",
     "bulma": "^0.7.1",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
     "lodash": "^4.17.10",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-markdown": "^3.3.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-markdown": "^3.3.4",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -32,10 +32,10 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
-    "@types/node": "^10.1.2",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
-    "redux-devtools-extension": "^2.13.2",
-    "typescript": "^2.9.1"
+    "@types/node": "^10.3.6",
+    "@types/react": "^16.4.2",
+    "@types/react-dom": "^16.0.6",
+    "redux-devtools-extension": "^2.13.5",
+    "typescript": "^2.9.2"
   }
 }

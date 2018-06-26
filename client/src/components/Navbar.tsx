@@ -1,10 +1,10 @@
 import { logout } from 'actions/accountActions'
 import { BCol, Btn, DFlex, Icon, Row } from 'components/elements'
 import React, { Component } from 'react'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { State } from 'reducers'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
 type NB = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
 

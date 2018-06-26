@@ -1,5 +1,5 @@
 import { checkResp } from 'functions'
-import { Dispatch } from 'react-redux'
+import { Dispatch } from 'redux'
 
 export function fetchTeams() {
   return (dispatch: Dispatch) => {

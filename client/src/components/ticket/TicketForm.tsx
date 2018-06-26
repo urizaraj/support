@@ -12,10 +12,10 @@ import {
 import capitalize from 'lodash/capitalize'
 import React, { ChangeEvent, Component } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { State } from 'reducers'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { Change, Submit } from 'types'
 
 type TFP = ReturnType<typeof mapState> &

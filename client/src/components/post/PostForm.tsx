@@ -4,9 +4,9 @@ import { BCol, Btn, Icon, Radio, Row } from 'components/elements'
 import capitalize from 'lodash/capitalize'
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { State } from 'reducers'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { Change, Submit } from 'types'
 
 type PFP = ReturnType<typeof mapState> &

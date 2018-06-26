@@ -3,9 +3,9 @@ import { BCol, Check, Row } from 'components/elements'
 import includes from 'lodash/includes'
 import xor from 'lodash/xor'
 import React, { Component } from 'react'
-import { connect, Dispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { State } from 'reducers'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import { Change } from 'types'
 
 type ProPr = ReturnType<typeof mapState> & ReturnType<typeof mapDispatch>
