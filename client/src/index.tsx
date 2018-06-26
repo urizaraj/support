@@ -3,20 +3,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import App from './App'
 import rootReducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 
-declare module 'redux' {
-  export type GenericStoreEnhancer = any
-}
-
 const store = createStore(
   rootReducer,
-  devToolsEnhancer({}),
-  applyMiddleware(thunk)
+  composeWithDevTools(applyMiddleware(thunk))
 )
 
 const render = () => {
