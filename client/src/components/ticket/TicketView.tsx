@@ -90,7 +90,10 @@ class TicketView extends Component<TVP, TVS> {
         <hr />
         {posts.length < 1 ? <em>no posts</em> : postList(posts)}
         <hr />
-        <h4 onClick={this.toggleNewPost}>New Post</h4>
+        {/* <h4 onClick={this.toggleNewPost}>New Post</h4> */}
+        <Btn onClick={this.toggleNewPost} primary active={newPost}>
+          New Post
+        </Btn>
         <Collapse isOpened={newPost}>
           <PostForm toggleNewPost={this.toggleNewPost} />
         </Collapse>
