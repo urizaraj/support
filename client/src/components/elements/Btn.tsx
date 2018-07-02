@@ -23,6 +23,8 @@ interface Props {
   dark?: boolean
   link?: boolean
 
+  active?: boolean
+
   size?: string
   outline?: boolean
   block?: boolean
@@ -57,13 +59,15 @@ export const Btn = (props: Props) => {
 
   const outline = ff('outline')
 
+  const active = props.active ? 'active' : ''
+
   const type = compact(['btn', outline, color]).join('-')
 
   const size = comp(ff(['sm', 'lg']))
 
   const block = comp(ff('block'))
 
-  const result = ['btn', type, size, block, props.opt].join(' ')
+  const result = ['btn', type, size, block, props.opt, active].join(' ')
 
   return (
     <button
