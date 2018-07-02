@@ -6,6 +6,7 @@ import {
 import { Btn } from 'components/elements'
 import PostForm from 'components/post/PostForm'
 import React, { Component } from 'react'
+import { Collapse } from 'react-collapse'
 import ReactMarkdown from 'react-markdown'
 import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
@@ -59,6 +60,7 @@ class TicketView extends Component<TVP, TVS> {
     const { title, posts } = this.props
     const content = this.props.content ? this.props.content : ''
     const open = this.props.status === 'open'
+    const { newPost } = this.state
     return (
       <div>
         <h1>{title}</h1>
@@ -88,16 +90,10 @@ class TicketView extends Component<TVP, TVS> {
         <hr />
         {posts.length < 1 ? <em>no posts</em> : postList(posts)}
         <hr />
-        {this.state.newPost ? (
-          <div>
-            <h4>New Post</h4>
-            <PostForm toggleNewPost={this.toggleNewPost} />
-          </div>
-        ) : (
-          <Btn primary onClick={this.toggleNewPost}>
-            New Post
-          </Btn>
-        )}
+        <h4 onClick={this.toggleNewPost}>New Post</h4>
+        <Collapse isOpened={newPost}>
+          <PostForm toggleNewPost={this.toggleNewPost} />
+        </Collapse>
       </div>
     )
   }
