@@ -12,4 +12,5 @@ export interface Ticket {
   content?: string
   user: User
   team: Team
+  assignedTo: User
 }
