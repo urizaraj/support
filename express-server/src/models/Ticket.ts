@@ -12,6 +12,7 @@ export type TicketModel = mongoose.Document & {
   team: TeamModel
   posts: PostModel[]
   user: UserModel
+  assignedTo: UserModel
 }
 
 const ObjectId = mongoose.SchemaTypes.ObjectId
@@ -25,7 +26,8 @@ const ticketSchema = new mongoose.Schema(
     content: String,
     team: { type: ObjectId, ref: 'Team' },
     user: { type: ObjectId, ref: 'User' },
-    posts: [postSchema]
+    posts: [postSchema],
+    assignedTo: { type: ObjectId, ref: 'User' }
   },
   {
     timestamps: true,
