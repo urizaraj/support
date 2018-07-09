@@ -10,7 +10,8 @@ const initialState = {
   posts: [],
   content: '',
   user: {} as User,
-  team: {} as Team
+  team: {} as Team,
+  assignedTo: {} as User
 }
 
 export const view = (state = initialState, action: any): Ticket => {
