@@ -1,14 +1,13 @@
+import { fetchTeams } from 'actions/teamActions'
 import { fetchTickets } from 'actions/ticketActions'
-import { BCol, DFlex, Row } from 'components/elements'
+import { BCol, Row } from 'components/elements'
 import sortBy from 'lodash/sortBy'
-import uniqBy from 'lodash/uniqBy'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, RouteComponentProps } from 'react-router-dom'
 import { State } from 'reducers'
 import { bindActionCreators, Dispatch } from 'redux'
 import { Ticket } from 'types'
-import { Team } from 'types/Team'
 
 const initialState = {
   team: ''
@@ -25,6 +24,7 @@ class TicketIndex extends Component<TIP, TIS> {
 
   componentDidMount() {
     this.props.fetchTickets()
+    this.props.fetchTeams()
   }
 
   handleTeam = (event: any) => {
@@ -34,7 +34,9 @@ class TicketIndex extends Component<TIP, TIS> {
   render() {
     let tickets = sortBy(this.props.tickets, t => t.priority)
 
-    const teams = uniqBy(tickets.map(t => ({ ...t.team })), 'id')
+    // const teams = uniqBy(tickets.map(t => ({ ...t.team })), 'id')
+
+    const { teams } = this.props
 
     if (this.state.team) {
       tickets = tickets.filter(t => t.team.id === this.state.team)
@@ -44,21 +46,27 @@ class TicketIndex extends Component<TIP, TIS> {
 
     return (
       <div>
-        <h2>Tickets</h2>
-        <div className="mb-3">
-          <select
-            value={this.state.team}
-            onChange={this.handleTeam}
-            className="form-control"
-          >
-            <option value="">All</option>
-            {teams.map(t => (
-              <option key={t.id} value={t.id}>
-                {t.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Row opt="mb-4 align-items-end">
+          <BCol>
+            <h2 className="mb-0">Tickets</h2>
+          </BCol>
+
+          <BCol opt="ml-auto" size="3">
+            <select
+              value={this.state.team}
+              onChange={this.handleTeam}
+              className="form-control"
+            >
+              <option value="">All</option>
+              {teams.map(t => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </BCol>
+        </Row>
+
         {ticketList}
       </div>
     )
@@ -94,12 +102,13 @@ const TicketListItem = (ticket: Ticket) => {
 
 const mapState = (state: State) => {
   return {
-    tickets: state.ticket.collection
+    tickets: state.ticket.collection,
+    teams: state.team.collection
   }
 }
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { fetchTickets }
+  const actions = { fetchTickets, fetchTeams }
   return bindActionCreators(actions, dispatch)
 }
 
