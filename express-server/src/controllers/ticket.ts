@@ -42,3 +42,11 @@ export const patchTicket: Route = async (req, res) => {
 
   res.json(ticket.toJSON())
 }
+
+export const getTicketsUnassigned: Route = async (req, res) => {
+  const tickets = await Ticket.find({})
+    .where({ assignedTo: { $exists: false } })
+    .populate('team')
+
+  res.json(tickets.map(ticket => ticket.toJSON()))
+}
