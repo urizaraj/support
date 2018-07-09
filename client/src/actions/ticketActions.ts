@@ -39,6 +39,20 @@ export function fetchTickets() {
   }
 }
 
+export function fetchTicketsUnassigned() {
+  return (dispatch: Dispatch) => {
+    return fetch('/ticket/unassigned')
+      .then(checkResp)
+      .then(resp =>
+        dispatch({
+          type: 'FETCH_TICKETS',
+          tickets: resp
+        })
+      )
+      .catch(err => console.log('error fetching unassigned tickets', err))
+  }
+}
+
 export function fetchTicket(id: string) {
   return (dispatch: Dispatch) => {
     return fetch(`/ticket/${id}`)
