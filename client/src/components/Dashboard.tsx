@@ -1,6 +1,8 @@
 import { fetchTicketsUnassigned } from 'actions/ticketActions'
-import { BCol, Row } from 'components/elements'
+import DashboardTicket from 'components/DashboardTicket'
+import { BCol, Btn, Row } from 'components/elements'
 import React, { Component } from 'react'
+import { Manager, Popper, Reference } from 'react-popper'
 import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { State } from 'reducers'
@@ -17,11 +19,11 @@ class Dashboard extends Component<DP> {
 
   render() {
     const { tickets } = this.props
+
     const ticketList = tickets.map(ticket => (
-      <Row key={ticket.id}>
-        <BCol>{ticket.title}</BCol>
-      </Row>
+      <DashboardTicket {...ticket} key={ticket.id} />
     ))
+
     return (
       <div>
         <h1>Dashboard</h1>
