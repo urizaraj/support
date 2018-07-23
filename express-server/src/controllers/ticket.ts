@@ -1,10 +1,20 @@
 import { RequestHandler } from 'express'
-import Ticket from '../models/Ticket'
+import Ticket, { TicketModel } from '../models/Ticket'
 
 type Route = RequestHandler
 
 export const getTickets: Route = async (req, res) => {
-  const tickets = await Ticket.find({}).populate('team')
+  let tickets: TicketModel[]
+
+  // const tickets = await Ticket.find({}).populate('team')
+
+  if (req.query.unassigned === 'true') {
+    tickets = await Ticket.find({})
+      .where({ assignedTo: { $exists: false } })
+      .populate('team')
+  } else {
+    tickets = await Ticket.find({}).populate('team')
+  }
 
   res.json(tickets.map(ticket => ticket.toJSON()))
 }
