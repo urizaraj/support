@@ -41,7 +41,7 @@ export function fetchTickets() {
 
 export function fetchTicketsUnassigned() {
   return (dispatch: Dispatch) => {
-    return fetch('/ticket/unassigned')
+    return fetch('/ticket?unassigned=true')
       .then(checkResp)
       .then(resp =>
         dispatch({
