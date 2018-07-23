@@ -140,6 +140,8 @@ app.delete('/team/:id', teamController.deleteTeam)
 
 app.post('/post', postController.createPost)
 
+app.get('/user', userController.getUsers)
+
 // /**
 //  * API examples routes.
 //  */
