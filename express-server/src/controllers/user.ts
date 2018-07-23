@@ -113,6 +113,12 @@ export let postSignup: Route = async (req, res, next) => {
  */
 export const getAccount: Route = (req, res) => res.json(req.user.toJSON())
 
+export const getUsers: Route = async (req, res) => {
+  const users = await User.find({})
+
+  res.json(users.map(user => user.toJSON()))
+}
+
 /**
  * POST /account/profile
  * Update profile information.
