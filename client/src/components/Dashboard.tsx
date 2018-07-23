@@ -1,4 +1,5 @@
 import { fetchTicketsUnassigned } from 'actions/ticketActions'
+import { fetchUsers } from 'actions/userActions'
 import DashboardTicket from 'components/DashboardTicket'
 import { BCol, Btn, Row } from 'components/elements'
 import React, { Component } from 'react'
@@ -8,13 +9,14 @@ import { RouteComponentProps } from 'react-router'
 import { State } from 'reducers'
 import { bindActionCreators, Dispatch } from 'redux'
 
-type DP = ReturnType<typeof mapState> &
+type Props = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
   RouteComponentProps<any>
 
-class Dashboard extends Component<DP> {
+class Dashboard extends Component<Props> {
   componentDidMount() {
     this.props.fetchTicketsUnassigned()
+    this.props.fetchUsers()
   }
 
   render() {
@@ -36,12 +38,13 @@ class Dashboard extends Component<DP> {
 
 const mapState = (state: State) => {
   return {
-    tickets: state.ticket.collection
+    tickets: state.ticket.collection,
+    users: state.user.collection
   }
 }
 
 const mapDispatch = (dispatch: Dispatch) => {
-  const actions = { fetchTicketsUnassigned }
+  const actions = { fetchTicketsUnassigned, fetchUsers }
   return bindActionCreators(actions, dispatch)
 }
 
