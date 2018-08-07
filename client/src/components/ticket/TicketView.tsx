@@ -71,7 +71,7 @@ class TicketView extends Component<TVP, TVS> {
     return (
       <div>
         <h1>{title}</h1>
-        <strong>Created by</strong> {user.name}
+        {/* <strong>Created by</strong> {user.name}
         <br />
         <strong>Ticket</strong> {this.id}
         <br />
@@ -79,7 +79,31 @@ class TicketView extends Component<TVP, TVS> {
         <br />
         <strong>Status</strong> {status[this.props.status]}
         <br />
-        <strong>Team</strong> {team.name} <br />
+        <strong>Team</strong> {team.name} <br /> */}
+        <table className="table">
+          <tbody>
+            <tr>
+              <th>Created by</th>
+              <td>{user.name}</td>
+            </tr>
+            <tr>
+              <th>Ticket</th>
+              <td>{this.id}</td>
+            </tr>
+            <tr>
+              <th>Priority</th>
+              <td>{priority}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{status[this.props.status]}</td>
+            </tr>
+            <tr>
+              <th>Team</th>
+              <td>{team.name}</td>
+            </tr>
+          </tbody>
+        </table>
         <a className="btn btn-danger" href="/" onClick={this.handleDelete}>
           Delete
         </a>{' '}
