@@ -57,22 +57,23 @@ class TicketView extends Component<TVP, TVS> {
   }
 
   render() {
-    const { title, posts } = this.props
+    const { title, posts, user, priority, team } = this.props
     const content = this.props.content ? this.props.content : ''
     const open = this.props.status === 'open'
     const { newPost } = this.state
+
     return (
       <div>
         <h1>{title}</h1>
-        <strong>Created by</strong> {this.props.user.name}
+        <strong>Created by</strong> {user.name}
         <br />
         <strong>Ticket</strong> {this.id}
         <br />
-        <strong>Priority</strong> {this.props.priority}
+        <strong>Priority</strong> {priority}
         <br />
         <strong>Status</strong> {status[this.props.status]}
         <br />
-        <strong>Team</strong> {this.props.team.name} <br />
+        <strong>Team</strong> {team.name} <br />
         <a href="/" onClick={this.handleDelete}>
           Delete
         </a>{' '}
