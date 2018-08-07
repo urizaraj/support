@@ -58,9 +58,15 @@ class TicketView extends Component<TVP, TVS> {
 
   render() {
     const { title, posts, user, priority, team } = this.props
-    const content = this.props.content ? this.props.content : ''
+    const content = this.props.content ? (
+      <ReactMarkdown source={this.props.content} />
+    ) : (
+      <em>no description</em>
+    )
     const open = this.props.status === 'open'
     const { newPost } = this.state
+
+    const allPosts = posts.length < 1 ? <em>no posts</em> : postList(posts)
 
     return (
       <div>
@@ -87,11 +93,10 @@ class TicketView extends Component<TVP, TVS> {
           </a>
         )}
         <hr />
-        {content ? <ReactMarkdown source={content} /> : <em>no description</em>}
+        {content}
         <hr />
-        {posts.length < 1 ? <em>no posts</em> : postList(posts)}
+        {allPosts}
         <hr />
-        {/* <h4 onClick={this.toggleNewPost}>New Post</h4> */}
         <Btn onClick={this.toggleNewPost} primary active={newPost}>
           New Post
         </Btn>
