@@ -10,7 +10,6 @@
     "@types/redux": "^3.6.31",
     "autoprefixer": "^8.6.4",
     "bootstrap": "^4.1.1",
-    "bulma": "^0.7.1",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.1",
