@@ -74,15 +74,15 @@ class TicketView extends Component<TVP, TVS> {
         <strong>Status</strong> {status[this.props.status]}
         <br />
         <strong>Team</strong> {team.name} <br />
-        <a href="/" onClick={this.handleDelete}>
+        <a className="btn btn-danger" href="/" onClick={this.handleDelete}>
           Delete
         </a>{' '}
         {open ? (
-          <a href="/" onClick={this.handleClose}>
+          <a className="btn btn-primary" href="/" onClick={this.handleClose}>
             Close Ticket
           </a>
         ) : (
-          <a href="/" onClick={this.handleOpen}>
+          <a className="btn btn-primary" href="/" onClick={this.handleOpen}>
             Re-open Ticket
           </a>
         )}
